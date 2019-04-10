@@ -11,7 +11,7 @@ public class Tree implements Comparable<Tree>{
         this.root = root;
     }
     /**
-     *ÖĞĞò±éÀú·¨
+     *ä¸­åºéå†æ³•
      */
     public void inDisplay(Node node){
         if (node!=null){
