@@ -1,4 +1,4 @@
-package test3;
+﻿package test3;
 
 public class Tree implements Comparable<Tree>{
     private Node root;

@@ -1,4 +1,4 @@
-package test3;
+﻿package test3;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -18,11 +18,11 @@ public class Huffman {
 	private String source;
 	private String result;
 
-	public void init(String source) {
+	public void init(String source) { //统计出现字符统计其权重
 		this.source = source;
-		char[] chars = source.toCharArray();
+		char[] chars = source.toCharArray();//将读取到的文本转为char数组
 		for (char c : chars) {
-			if (!map.containsKey(c)) {
+			if (!map.containsKey(c)) { //该方法判断Map集合对象中是否包含指定的键名。如果Map集合中包含指定的键名，则返回true，否则返回false。
 				map.put(c, 1);
 			} else {
 				map.put(c, map.get(c) + 1);
@@ -64,11 +64,11 @@ public class Huffman {
 		this.encoding(tree.getRoot(), "");
 	}
 
-	public String encodingResult() {
+	public String encodingResult() { //编码
 		StringBuilder sb = new StringBuilder();
 		char[] chars = source.toCharArray();
 		for (char c : chars) {
-			sb.append(ce.get(c) + ' ');
+			sb.append(ce.get(c) + ' ');//每输出一个编码加一个空格
 		}
 		return sb.toString();
 	}
@@ -95,23 +95,24 @@ public class Huffman {
 	}
 
 	public static void main(String[] args) {
-		String source = readString4();
+		String source = readString();//读取文本字符串
 		Huffman huffman = new Huffman();
-		huffman.init(source);
-		huffman.build();
+		huffman.init(source); //统计字符以及权重
+		huffman.build(); //构建Huffman树
 		huffman.displayTree();
 		System.out.println("-------");
 		huffman.encoding();
-		huffman.displayEncodeing();
+		huffman.displayEncodeing();//输出每个key对应的value
 		System.out.println(source + ":" + huffman.encodingResult());
-		writeString(huffman.encodingResult());
+		writeString(huffman.encodingResult()); //将编码后写入到文本
 		System.out.println("已写入文件encodinghuffman.txt");
 	}
-
-	public static String readString4() { // 输入辅助类
+	
+	// 输入辅助类
+	public static String readString() { 
 		int len = 0;
 		StringBuffer str = new StringBuffer("");
-		File file = new File("D:\\huffman.txt");
+		File file = new File("huffman.txt");
 		try {
 			FileInputStream is = new FileInputStream(file);
 			InputStreamReader isr = new InputStreamReader(is);
@@ -135,11 +136,12 @@ public class Huffman {
 		return str.toString();
 	}
 
+	//输出辅助类
 	public static void writeString(String str) {
 		
         FileWriter writer;
         try {
-            writer = new FileWriter("D:\\\\encodinghuffman.txt");
+            writer = new FileWriter("encodinghuffman.txt");
             writer.write("");//清空原文件内容
             writer.write(str);
             writer.flush();
