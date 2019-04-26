@@ -32,7 +32,7 @@ public class Huffman {
 	}
 
 	private void afterInit() {
-		map.forEach((c, count) -> {
+		map.forEach((c, count) -> { //jdk8新的迭代方式
 			Node<Character> node = new Node<>();
 			node.key = count;
 			node.charData = c;
@@ -46,7 +46,7 @@ public class Huffman {
 
 	public void build() {
 		while (this.trees.size() > 1) {
-			Tree left = this.trees.poll();
+			Tree left = this.trees.poll(); //poll():取出元素，（删除）
 			Tree right = this.trees.poll();
 
 			Node node = new Node();
@@ -84,7 +84,7 @@ public class Huffman {
 	}
 
 	public void displayTree() {
-		Tree tree = this.trees.peek();
+		Tree tree = this.trees.peek();//读取元素peek():，（不删除）
 		tree.inDisplay(tree.getRoot());
 	}
 
